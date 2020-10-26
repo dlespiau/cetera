@@ -18,6 +18,12 @@ class Draw {
   }
 
   rect(width, height) {
+    this.ctx.beginPath();
+    this.ctx.rect(-width / 2, -height / 2, width, height);
+    this.ctx.stroke();
+  }
+
+  fillRect(width, height) {
     this.ctx.fillRect(-width / 2, -height / 2, width, height);
   }
 
