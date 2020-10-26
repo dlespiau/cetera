@@ -10,6 +10,13 @@ class Draw {
     this.ctx.fillRect(0, 0, this.width, this.height);
   }
 
+  line(x1, y1, x2, y2) {
+    this.ctx.beginPath();
+    this.ctx.moveTo(x1, y1);
+    this.ctx.lineTo(x2, y2);
+    this.ctx.stroke();
+  }
+
   rect(width, height) {
     this.ctx.fillRect(-width / 2, -height / 2, width, height);
   }
