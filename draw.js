@@ -1,5 +1,26 @@
 const { Shape } = require("./shape");
 
+function shapeLine(ctx, s, { closed = false } = {}) {
+    const v = s.vertices;
+    ctx.beginPath();
+    ctx.moveTo(v[0][0], v[0][1]);
+    for (let i = 1; i < v.length; i++) {
+      ctx.lineTo(v[i][0], v[i][1]);
+    }
+    if (closed) {
+      ctx.lineTo(v[0][0], v[0][1]);
+    }
+    ctx.stroke();
+}
+
+function shapePoint(ctx, s) {
+    const v = s.vertices;
+    const size = 8;
+    for (let i = 0; i < v.length; i++) {
+      ctx.fillRect(v[i][0]-size/2, v[i][1]-size/2, 8, 8);
+    }
+}
+
 class Draw {
   constructor(context, width, height) {
     this.ctx = context;
@@ -37,20 +58,21 @@ class Draw {
     this.ctx.setTransform(1, 0, 0, 1, x, y);
   }
 
-  shape(s, { closed = false } = {}) {
+  shape(s, { method = "line", closed = false } = {}) {
     const v = s.vertices;
     if (v.length < 2) {
       return;
     }
-    this.ctx.beginPath();
-    this.ctx.moveTo(v[0][0], v[0][1]);
-    for (let i = 1; i < v.length; i++) {
-      this.ctx.lineTo(v[i][0], v[i][1]);
+    switch(method) {
+    case "line":
+      shapeLine(this.ctx, s, { closed });
+      break;
+    case "point":
+      shapePoint(this.ctx, s);
+      break;
+    default:
+        throw `shape: unknown method "${method}"`;
     }
-    if (closed) {
-      this.ctx.lineTo(v[0][0], v[0][1]);
-    }
-    this.ctx.stroke();
   }
 }
 
