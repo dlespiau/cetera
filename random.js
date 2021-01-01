@@ -28,17 +28,15 @@ class Seeded {
     } while (1);
   }
 
-  noise1D(x, frequency, amplitude) {
+  noise1D(x, frequency = 1, amplitude = 1) {
     if (!isFinite(x)) {
       throw new TypeError("x component for noise() must be finite");
     }
 
-    frequency = frequency ?? 1;
-    amplitude = amplitude ?? 1;
     return amplitude * this.noise.noise2D(x * frequency, 0);
   }
 
-  noise2D(x, y, frequency, amplitude) {
+  noise2D(x, y, frequency = 1, amplitude = 1) {
     if (!isFinite(x)) {
       throw new TypeError("x component for noise() must be finite");
     }
@@ -46,12 +44,10 @@ class Seeded {
       throw new TypeError("y component for noise() must be finite");
     }
 
-    frequency = frequency ?? 1;
-    amplitude = amplitude ?? 1;
     return amplitude * this.noise.noise2D(x * frequency, y * frequency);
   }
 
-  noise3D(x, y, z, frequency, amplitude) {
+  noise3D(x, y, z, frequency = 1, amplitude = 1) {
     if (!isFinite(x)) {
       throw new TypeError("x component for noise() must be finite");
     }
@@ -62,15 +58,13 @@ class Seeded {
       throw new TypeError("z component for noise() must be finite");
     }
 
-    frequency = frequency ?? 1;
-    amplitude = amplitude ?? 1;
     return (
       amplitude *
       noiseGenerator.noise3D(x * frequency, y * frequency, z * frequency)
     );
   }
 
-  noise4D(x, y, z, w, frequency, amplitude) {
+  noise4D(x, y, z, w, frequency = 1, amplitude = 1) {
     if (!isFinite(x)) {
       throw new TypeError("x component for noise() must be finite");
     }
@@ -84,8 +78,6 @@ class Seeded {
       throw new TypeError("w component for noise() must be finite");
     }
 
-    frequency = frequency ?? 1;
-    amplitude = amplitude ?? 1;
     return (
       amplitude *
       noiseGenerator.noise4D(
