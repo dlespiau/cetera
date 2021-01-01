@@ -41,17 +41,37 @@ class Draw {
   }
 
   rect(width, height) {
+    this.rectAt(0, 0, width, height);
+  }
+
+  rectAt(x, y, width, height) {
     this.ctx.beginPath();
-    this.ctx.rect(-width / 2, -height / 2, width, height);
+    this.ctx.rect(x - width / 2, y - height / 2, width, height);
     this.ctx.stroke();
   }
 
   fillRect(width, height) {
-    this.ctx.fillRect(-width / 2, -height / 2, width, height);
+    this.fillRectAt(0, 0, width, height);
+  }
+
+  fillRectAt(x, y, width, height) {
+    this.ctx.fillRect(x - width / 2, y - height / 2, width, height);
   }
 
   square(width) {
-    this.rect(width, width);
+    this.rectAt(0, 0, width, width);
+  }
+
+  fillSquare(width) {
+    this.fillRectAt(0, 0, width, width);
+  }
+
+  fillSquareAt(x, y, width) {
+    this.fillRectAt(x, y, width, width);
+  }
+
+  squareAt(x, y, width) {
+    this.rectAt(x, y, width, width);
   }
 
   setTranslation(x, y) {
